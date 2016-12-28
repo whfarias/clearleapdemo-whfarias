@@ -23,8 +23,8 @@
 		</connectionPolicy>
 	</connectivity>
 
-	<procedure name="getDeviceId" secured="false" />
-	<procedure name="getLogin" secured="false" />
+
+	<procedure name="getLogin" secured="false"  />
 	<procedure name="unprotected" secured="false"/>
 
 </mfp:adapter>

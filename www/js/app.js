@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'LocalStorageModule'])
+angular.module('VideoDemo', ['ionic', 'VideoDemo.controllers', 'ngCordova', 'LocalStorageModule'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -29,18 +29,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'LocalSt
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+        controller: "AppCtrl"
+
       })
 
-      .state('app.video.feature', {
-        url: "/feature",
-        views: {
-          'home-tab': {
-            templateUrl: "templates/tabs/feature.html",
-            controller: "FeatureCtrl"
-          }
-        }
-      })
       .state('app.video.subscribe', {
         url: "/subscribe",
         views: {
@@ -85,11 +77,43 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'LocalSt
           }
         }
       })
+      .state('app.video.feature', {
+        url: "/feature",
+        views: {
+          'home-tab': {
+            templateUrl: "templates/tabs/feature.html",
+            controller: "FeatureCtrl"
+          }
+        }
+      })
+
+
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/video/feature');
     $ionicConfigProvider.views.maxCache(0);
 
   })
+  var wlInitOptions = {
+      // Options to initialize with the WL.Client object.
+      // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
+  };
 
-
+  // Called automatically after MFP framework initialization by WL.Client.init(wlInitOptions).
+  function wlCommonInit(){
+    console.log(">> wlCommonInit() ..." );
+   var serverUrl = WL.App.getServerUrl(function(success){
+       console.log(success);
+   }, function(fail){
+       console.log(fail);
+   });
+   WLAuthorizationManager.obtainAccessToken().then(
+       function (accessToken) {
+         console.log(">> Success - Connected to MobileFirst Server");
+       },
+       function (error) {
+         console.log(">> Failed to connect to MobileFirst Server");
+         console.log(error);
+       }
+   );
+  };

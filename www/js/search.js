@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('VideoDemo')
 
 .controller('SearchCtrl', function($scope, $ionicModal, $timeout, $http) {
     $scope.data = {};

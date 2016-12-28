@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('VideoDemo')
 
 .controller('SubscribeCtrl', function($scope, $ionicModal, $timeout, $http) {
 

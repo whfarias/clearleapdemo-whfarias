@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('VideoDemo')
 
   .controller('HistoryCtrl', function ($scope, $ionicModal, $timeout, localStorageService, $sce, $http) {
 
