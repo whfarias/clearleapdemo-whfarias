@@ -10,7 +10,11 @@
  * @returns json list of items.
  */
 
-function getCatalog() {
+function getCatalog(DeviceID, DeviceToken) {
+	WL.Logger.error("Parametros Entrada:");
+	WL.Logger.error(DeviceID);
+	WL.Logger.error(DeviceToken);
+
 	var tag = 'cloffice/client/ios/catalog';
 
 	var input = {
@@ -36,10 +40,6 @@ function getCatalog() {
 	WL.Logger.error("totalResults:");
 	WL.Logger.error(JSON.stringify(resultXML.rss.channel.totalResults));
 
-
-
-	// var VideoJSONArray = [];
-
 	for (var i = 0; i < resultXML.rss.channel.totalResults; i++) {
 
 				 if (resultXML.rss.channel.item[i].title == "Movies") {
@@ -56,31 +56,58 @@ function getCatalog() {
 						WL.Logger.error("qtd de Movies:");
 						WL.Logger.error(JSON.stringify(lista.rss.channel.totalResults));
 
-						var VideoJSONArray = {
+						var VideoJSONArray = [{
 							 "id": 1,
 							 "name": resultXML.rss.channel.item[i].title,
 							 "videos" : []
-						 };
+						 }];
 
-						for (var j = 0; j < lista.rss.channel.totalResults; j++) {
-								lista.rss.channel.item[j].guid;
+						 WL.Logger.error("Video JSON Array");
+						 WL.Logger.error(JSON.stringify(VideoJSONArray));
+
+						for (var x = 0; x < (lista.rss.channel.totalResults - 1); x++) {
+
 								input.path = "cloffice/client/ios/browse/" + lista.rss.channel.item[i].guid;
+
+								WL.Logger.error("Input Movies details:");
+								WL.Logger.error(JSON.stringify(input));
+
 								catalog  = MFP.Server.invokeHttp(input);
+
 								WL.Logger.error("video details:");
+								WL.Logger.error(JSON.stringify(catalog.rss.channel.totalResults));
 								WL.Logger.error(JSON.stringify(catalog));
 
-									VideoJSONArray.videos.push({
+								if (Array.isArray(catalog.rss.channel.item)) {
+										WL.Logger.error("É um Array:" + x);
+										VideoJSONArray[0].videos.push({
+												"id": 1,
+												"name": catalog.rss.channel.item[x].title,
+												// "img": catalog.rss.channel.item[x].group.thumbnail.url,
+												"img" : "http://videos.oneindia.com/image/120x70x60/2015/05/49362837-hollywood-news.jpg",
+												"url": catalog.rss.channel.item[x].link + "?deviceId=" + DeviceID + "&deviceToken=" + DeviceToken,
+										 		"time":  catalog.rss.channel.item[x].group.content.duration,
+												"Author": "adapters",
+												"views": 3,
+												"likes": 3,
+												"comments": 2,
+												"description": catalog.rss.channel.item[x].description
+											});
+								}else {
+									VideoJSONArray[0].videos.push({
 											"id": 1,
-											"name": catalog.rss.channel.item[j].title,
-											"img": catalog.rss.channel.item[j].group.thumbnail.url,
-											"url": catalog.rss.channel.item[j].group.content.url,
-									 		"time":  catalog.rss.channel.item[j].group.content.duration,
+											"name": catalog.rss.channel.item.title,
+											// "img": catalog.rss.channel.item.group.thumbnail.url,
+											"url": catalog.rss.channel.item.link + "?deviceId=" + DeviceID + "&deviceToken=" + DeviceToken,
+									 		"time":  catalog.rss.channel.item.group.content.duration,
 											"Author": "adapters",
 											"views": 3,
 											"likes": 3,
 											"comments": 2,
-											"description": catalog.rss.channel.item[j].description
+											"description": catalog.rss.channel.item.description
 										});
+								}
+
 
 							}
 							// resultJSONArray.push(VideoJSONArray)

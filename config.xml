@@ -53,14 +53,14 @@
         <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
     </platform>
     <mfp:android>
-        <mfp:sdkChecksum>0</mfp:sdkChecksum>
+        <mfp:sdkChecksum>2593082921</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
         </mfp:security>
     </mfp:android>
     <mfp:ios>
-        <mfp:sdkChecksum>306842114</mfp:sdkChecksum>
+        <mfp:sdkChecksum>3154425751</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -87,9 +87,9 @@
         </mfp:windows10>
         <mfp:appChecksum>0</mfp:appChecksum>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20161106-1445</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20161215-164311</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
-    <mfp:server runtime="mfp" url="http://192.168.1.37:9080" />
+    <mfp:server runtime="mfp" url="http://192.168.1.36:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
     <icon src="resources/ios/icon/icon-small@3x.png" />

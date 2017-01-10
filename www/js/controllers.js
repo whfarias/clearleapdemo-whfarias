@@ -28,10 +28,12 @@ angular.module('VideoDemo.controllers', [])
 
 
       // var formParams =  {"params":"['value1', 'value2']"}
+      $scope.ClearDeviceID = "";
+      $scope.ClearDeviceID = "whfarias";
       var formParams = [
         usernameForm,
         passwordForm,
-        'teste' ,
+        $scope.ClearDeviceID ,
         'ios'
       ];
 
